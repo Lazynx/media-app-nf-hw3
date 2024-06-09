@@ -6,11 +6,11 @@ export default function Home() {
 
     return (
         <main className="flex-1 pt-16">
-            <section className="w-full py-8 md:py-18 lg:py-26 bg-white">
+            <section className="w-full py-8 md:py-18 lg:py-26 bg-white dark:bg-black">
                 <div className="container space-y-12 px-4 md:px-6">
                     {loading ? (
-                        <div className="inset-0 flex items-center justify-center bg-white w-full h-screen">
-                            <div className="animate-spin rounded-full border-4 border-black border-t-transparent h-14 w-14" />
+                        <div className="inset-0 flex items-center justify-center bg-white w-full h-screen dark:bg-black">
+                            <div className="animate-spin dark:animate-spin dark:rounded-full rounded-full border-4 border-black border-t-transparent h-14 w-14 dark:border-white" />
                         </div>
                     ) : error ? (
                         <p>{error}</p>

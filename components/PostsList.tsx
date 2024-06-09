@@ -42,7 +42,6 @@ export const PostsList: React.FC<PostsListProps> = ({ posts, loading, error = nu
                     tags={post.tags}
                     reactions={post.reactions}
                     views={post.views}
-                    username={post.username}
                 />
             ))}
         </div>

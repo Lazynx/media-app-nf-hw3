@@ -1,5 +1,4 @@
-// context/AuthContext.tsx
-import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 interface AuthContextProps {

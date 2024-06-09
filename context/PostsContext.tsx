@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import axios from 'axios';
 
@@ -21,6 +21,7 @@ interface PostsContextProps {
     posts: Post[];
     loading: boolean;
     error: string | null;
+    deletePost: (id: number) => void;
 }
 
 const PostsContext = createContext<PostsContextProps | undefined>(undefined);
@@ -60,8 +61,17 @@ const PostsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     }, [isAuthenticated]);
 
+    const deletePost = async (id: number) => {
+        try {
+            await axios.delete(`https://dummyjson.com/posts/${id}`);
+            setPosts(posts.filter(post => post.id !== id));
+        } catch (error) {
+            console.error('Failed to delete post', error);
+        }
+    };
+
     return (
-        <PostsContext.Provider value={{ posts, loading, error }}>
+        <PostsContext.Provider value={{ posts, loading, error, deletePost }}>
             {children}
         </PostsContext.Provider>
     );

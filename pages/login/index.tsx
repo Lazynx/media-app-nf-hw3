@@ -1,4 +1,3 @@
-// pages/login.tsx или app/login/page.tsx в зависимости от структуры проекта
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';

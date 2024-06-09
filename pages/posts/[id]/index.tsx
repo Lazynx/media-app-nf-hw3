@@ -39,7 +39,7 @@ const PostPage: React.FC = () => {
         <main className="flex-1 pt-16">
             <article className="prose prose-gray mx-auto max-w-3xl px-4 py-12 dark:prose-invert md:px-6 md:py-16 lg:py-20">
                 <div className="space-y-2 not-prose">
-                    <h1 className="text-black text-4xl font-extrabold tracking-tight lg:text-5xl">
+                    <h1 className="text-black text-4xl font-extrabold tracking-tight lg:text-5xl dark:text-white">
                         {post.title}
                     </h1>
                     <div className="flex items-center space-x-4">
@@ -49,19 +49,19 @@ const PostPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <p className='text-black'>
+                <p className='text-black dark:text-white'>
                     {post.body}
                 </p>
                 <div className="mt-4 flex flex-wrap justify-between gap-2">
                     <div className="flex gap-2">
                         {post.tags.map((tag, index) => (
-                            <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-white dark:bg-gray-800">
+                            <span key={index} className="rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-white dark:bg-gray-800">
                                 {tag}
                             </span>
                         ))}
                     </div>
                     <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-red-500 cursor-pointer">
+                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 dark:hover:text-red-500 hover:text-red-500 cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -77,7 +77,7 @@ const PostPage: React.FC = () => {
                             </svg>
                             <span>{post.reactions.likes}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-blue-500 cursor-pointer">
+                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 dark:hover:text-blue-500 hover:text-blue-500 cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -94,7 +94,7 @@ const PostPage: React.FC = () => {
                             </svg>
                             <span>{post.reactions.dislikes}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-green-500 cursor-pointer">
+                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 dark:hover:text-green-500 hover:text-green-500 cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"

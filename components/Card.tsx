@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { usePosts } from '@/context/PostsContext';
 
 type CardProps = {
     id: number; 
@@ -7,14 +8,24 @@ type CardProps = {
     tags: string[];
     reactions: { likes: number; dislikes: number };
     views: number;
-    username?: string;
 };
 
-export const Card: React.FC<CardProps> = ({ id, title, body, tags, reactions, views, username }) => {
+export const Card: React.FC<CardProps> = ({ id, title, body, tags, reactions, views }) => {
+    const { deletePost } = usePosts();
+
+    const handleDelete = () => {
+        deletePost(id);
+    };
+
     return (
-        <div className="w-full max-w-md rounded-lg bg-white shadow-md flex flex-col border">
-            <div className="flex items-center px-4 py-2">
+        <div className="w-full max-w-md rounded-lg bg-white shadow-md flex flex-col border relative">
+            <div className="flex justify-between px-4 py-2">
                 <h2 className="text-lg text-black font-semibold">{title}</h2>
+                <button onClick={handleDelete} className="text-black hover:text-red-700 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
             <div className="space-y-4 px-4">
                 <p className="text-black">{body}</p>
@@ -23,7 +34,7 @@ export const Card: React.FC<CardProps> = ({ id, title, body, tags, reactions, vi
             <div className="mt-auto px-4 py-3 dark:border-gray-800">
                 <div className="flex flex-wrap gap-2 mt-2 pb-4">
                     {tags.map((tag, index) => (
-                        <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-white dark:bg-gray-800">
+                        <span key={index} className="rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-white dark:bg-gray-800">
                             {tag}
                         </span>
                     ))}

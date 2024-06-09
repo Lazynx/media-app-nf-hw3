@@ -1,39 +1,42 @@
 import Link from "next/link";
 import { useAuth } from '@/context/AuthContext';
+import { ThemeToggle } from "../ThemeToggle";
 
 export const Header: React.FC = () => {
     const { user, logout } = useAuth();
 
     return (
-        <header className="bg-white text-gray-900 px-4 lg:px-6 h-16 fixed top-0 left-0 right-0 z-50 border-b border-black">
+        <header className="bg-white text-gray-900 px-4 lg:px-6 h-16 fixed top-0 left-0 right-0 z-50 border-b border-black dark:bg-black dark:border-white">
             <div className="container mx-auto flex items-center justify-between h-full relative">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
-                    <span className="text-2xl font-bold font-serif">Medium</span>
+                    <span className="text-2xl font-bold font-serif dark:text-white">Medium</span>
                 </Link>
                 <div className="flex items-center gap-4">
+                    <ThemeToggle />
                     <nav className="flex gap-4 sm:gap-6"> 
-                        <Link href="/" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+                        <Link href="/" className="text-sm font-medium hover:underline underline-offset-4 dark:text-white" prefetch={false}>
                             Home
                         </Link>
-                        <Link href="/posts" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+                        <Link href="/posts" className="text-sm font-medium hover:underline underline-offset-4 dark:text-white" prefetch={false}>
                             Posts
                         </Link>
                         {!user && (
-                            <Link href="/login" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+                            <Link href="/login" className="text-sm font-medium hover:underline underline-offset-4 dark:text-white" prefetch={false}>
                                 Login
                             </Link>
                         )}
                     </nav>
+                    
                     {user && (
                         <div className="flex items-center space-x-2">
                             <img src={user.image} alt={`${user.firstName} ${user.lastName}`} className="w-8 h-8 rounded-full border" />
-                            <span className="text-sm font-medium">{`${user.firstName} ${user.lastName}`}</span>
+                            <span className="text-sm font-medium dark:text-white">{`${user.firstName} ${user.lastName}`}</span>
                             <button onClick={logout} className="w-7 h-7 text-sm">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" className="hover:stroke-red-500">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
                                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
-                                        <path
+                                        <path className="dark:stroke-white"
                                             stroke="#000000"
                                             strokeLinecap="round"
                                             strokeLinejoin="round"

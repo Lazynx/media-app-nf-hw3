@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useAuth } from '@/context/AuthContext';
 import { ThemeToggle } from "../ThemeToggle";
+import { useMediaQuery } from '@react-hook/media-query';
 
 export const Header: React.FC = () => {
     const { user, logout } = useAuth();
+    const isWide = useMediaQuery('(min-width: 640px)');
 
     return (
         <header className="bg-white text-gray-900 px-4 lg:px-6 h-16 fixed top-0 left-0 right-0 z-50 border-b border-black dark:bg-black dark:border-white">
@@ -29,8 +31,8 @@ export const Header: React.FC = () => {
                     
                     {user && (
                         <div className="flex items-center space-x-2">
-                            <img src={user.image} alt={`${user.firstName} ${user.lastName}`} className="w-8 h-8 rounded-full border" />
-                            <span className="text-sm font-medium dark:text-white">{`${user.firstName} ${user.lastName}`}</span>
+                            <img src={user.image} alt={`${user.firstName} ${user.lastName}`} className={`w-8 h-8 rounded-full border ${isWide ? 'block' : 'hidden'}`} />
+                            <span className={`text-sm font-medium dark:text-white ${isWide ? 'block' : 'hidden'}`}>{`${user.firstName} ${user.lastName} `}</span>
                             <button onClick={logout} className="w-7 h-7 text-sm">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
                                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

@@ -1,5 +1,18 @@
-import { Post } from "@/context/PostsContext";
 import { Card } from "./Card";
+
+interface Post {
+    id: number;
+    title: string;
+    body: string;
+    tags: string[];
+    reactions: {
+        likes: number;
+        dislikes: number;
+    };
+    views: number;
+    username?: string; 
+    userImage?: string;
+}
 
 interface PostsListProps {
     posts: Post[];
